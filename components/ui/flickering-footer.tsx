@@ -296,7 +296,7 @@ export function FlickeringFooter() {
   const tablet = useMediaQuery("(max-width: 1024px)");
 
   return (
-    <footer id="footer" className="w-full pb-0">
+    <footer id="footer" className="w-full pb-0 relative z-[1]">
       {/* GradientMenu — Social Links */}
       <div className="flex justify-center py-10 border-b border-white/10">
         <GradientMenu />

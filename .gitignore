@@ -25,3 +25,4 @@ Thumbs.db
 
 # Internal docs (not for production)
 Prompt Temp/
+.vercel
