@@ -60,7 +60,7 @@ export default function Navbar() {
       <div className="glass rounded-full px-4 py-2.5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src="/images/Avatar.png" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
+          <img src="/images/Avatar.webp" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
           <span className="text-white font-display font-bold text-xl hidden sm:block">Trợ lý Creator</span>
         </Link>
         

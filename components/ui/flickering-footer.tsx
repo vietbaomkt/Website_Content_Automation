@@ -304,7 +304,7 @@ export function FlickeringFooter() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-10">
         <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0">
           <a href="/" className="flex items-center gap-2">
-            <img src="/images/Avatar.png" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
+            <img src="/images/Avatar.webp" alt="Trợ lý Creator" loading="lazy" className="w-8 h-8 rounded-full object-cover" />
             <p className="text-xl font-semibold text-white">Trợ lý Creator</p>
           </a>
           <p className="tracking-tight text-gray-400 font-medium text-sm leading-relaxed">

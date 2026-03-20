@@ -15,43 +15,43 @@ const options: Option[] = [
   {
     title: "Carousels",
     description: "Slides đa trang, chia nhỏ insight",
-    image: "/images/styles/Carousels.png",
+    image: "/images/styles/Carousels.webp",
     icon: <FaImages size={22} color="white" />
   },
   {
     title: "Normal",
     description: "Ảnh chân dung, chụp tự nhiên",
-    image: "/images/styles/Normal.png",
+    image: "/images/styles/Normal.webp",
     icon: <FaCamera size={22} color="white" />
   },
   {
     title: "Infographic",
     description: "Biểu đồ, số liệu, data visual",
-    image: "/images/styles/Inforgraphic.png",
+    image: "/images/styles/Inforgraphic.webp",
     icon: <FaChartPie size={22} color="white" />
   },
   {
     title: "Comparisons",
     description: "So sánh trước/sau, đối chiếu A vs B",
-    image: "/images/styles/Comparisons.png",
+    image: "/images/styles/Comparisons.webp",
     icon: <FaBalanceScale size={22} color="white" />
   },
   {
     title: "Creative",
     description: "Nghệ thuật sáng tạo, màu sắc mạnh",
-    image: "/images/styles/Creative.png",
+    image: "/images/styles/Creative.webp",
     icon: <FaPaintBrush size={22} color="white" />
   },
   {
     title: "Poster Film",
     description: "Phong cách điện ảnh, cinematic",
-    image: "/images/styles/Poster%20Film.png",
+    image: "/images/styles/Poster%20Film.webp",
     icon: <FaFilm size={22} color="white" />
   },
   {
     title: "Quote Card",
     description: "Quote truyền cảm hứng trên nền đẹp",
-    image: "/images/styles/Quote%20Card.png",
+    image: "/images/styles/Quote%20Card.webp",
     icon: <FaQuoteRight size={22} color="white" />
   }
 ];

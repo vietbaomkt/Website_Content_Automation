@@ -39,8 +39,11 @@ export function HeroSection5() {
                             loop
                             muted
                             playsInline
-                            className="size-full object-cover opacity-35 lg:opacity-75"
-                            src="/Background-hero.mp4"></video>
+                            preload="none"
+                            className="size-full object-cover opacity-35 lg:opacity-75">
+                            <source src="/videos/hero-bg.webm" type="video/webm" />
+                            <source src="/Background-hero.mp4" type="video/mp4" />
+                        </video>
                     </div>
                 </div>
             </section>

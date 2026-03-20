@@ -196,8 +196,9 @@ export function GlassmorphismPortfolioBlock() {
                   >
                     <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/20 blur-2xl" />
                     <img
-                      src="/images/Avatar.png"
+                      src="/images/Avatar.webp"
                       alt="Bùi Bảo Việt"
+                      loading="lazy"
                       className="relative h-32 w-32 rounded-full border border-white/20 object-cover shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
                     />
                   </motion.div>
