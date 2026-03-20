@@ -1,22 +1,7 @@
-import Features from './components/Features';
-import Footer from './components/Footer';
-import Hero from './components/Hero';
-import Navbar from './components/Navbar';
-import Pricing from './components/Pricing';
-import Testimonials from './components/Testimonials';
+// App.tsx is no longer the entry point.
+// Routing is handled in main.tsx via react-router-dom.
+// This file is kept for backward compatibility but can be removed.
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-[#030712] text-white font-sans selection:bg-blue-500/30">
-      <Navbar />
-      <main>
-        <Hero />
-        <Features />
-        <Pricing />
-        <Testimonials />
-      </main>
-      <Footer />
-    </div>
-  );
+  return null;
 }
-

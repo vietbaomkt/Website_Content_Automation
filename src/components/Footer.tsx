@@ -1,14 +1,20 @@
+import { Link } from 'react-router-dom';
+import GradientMenu from '@/components/ui/gradient-menu';
+
 export default function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#030712] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          <div className="col-span-1 md:col-span-2">
+        {/* GradientMenu — Social Links */}
+        <div className="flex justify-center mb-12">
+          <GradientMenu />
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-12">
+          <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center">
-                <span className="text-white font-display font-bold text-lg">A</span>
-              </div>
-              <span className="text-white font-display font-bold text-xl">AutoBrand</span>
+              <img src="/images/Avatar.png" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
+              <span className="text-white font-display font-bold text-xl">Trợ lý Creator</span>
             </div>
             <p className="text-gray-400 max-w-sm">
               Giải pháp tự động hóa nội dung đa kênh bằng AI, giúp bạn xây dựng nhân hiệu chuyên nghiệp mà không tốn nhiều thời gian và chi phí.
@@ -18,29 +24,33 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Sản phẩm</h4>
             <ul className="space-y-2">
-              <li><a href="#features" className="text-gray-400 hover:text-white transition-colors">Tính năng</a></li>
-              <li><a href="#pricing" className="text-gray-400 hover:text-white transition-colors">Bảng giá</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Case Studies</a></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Tính năng</Link></li>
+              <li><Link to="/pricing" className="text-gray-400 hover:text-white transition-colors">Bảng giá</Link></li>
+              <li><Link to="/library" className="text-gray-400 hover:text-white transition-colors">Thư viện</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-semibold mb-4">Công ty</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Về chúng tôi</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Liên hệ</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Chính sách bảo mật</a></li>
+              <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">Về chúng tôi</Link></li>
+              <li><a href="mailto:Vietbao.official@gmail.com" className="text-gray-400 hover:text-white transition-colors">Liên hệ</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">Hỗ trợ</h4>
+            <ul className="space-y-2">
+              <li><Link to="/affiliate" className="text-gray-400 hover:text-white transition-colors">Chương trình Affiliate</Link></li>
+              <li><Link to="/policy" className="text-gray-400 hover:text-white transition-colors">Chính sách & Điều khoản</Link></li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-gray-500 text-sm">
-            © {new Date().getFullYear()} AutoBrand. All rights reserved.
+        <div className="border-t border-white/10 pt-8 flex items-center justify-center">
+          <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} Trợ lý Creator. All rights reserved.
           </p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            {/* Social icons could go here */}
-          </div>
         </div>
       </div>
     </footer>

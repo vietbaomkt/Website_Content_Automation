@@ -1,5 +1,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ShinyButton } from '@/components/ui/shiny-button';
 
 const Stars = () => {
   const [stars, setStars] = useState<{ id: number; x: number; y: number; size: number; duration: number; delay: number }[]>([]);
@@ -41,15 +43,33 @@ const Stars = () => {
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+          poster=""
+        >
+          <source src="/Background-hero.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/60" />
+        {/* Bottom gradient blend */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent" />
+      </div>
+
       <Stars />
       
       {/* Portal Background Effects */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-blue-600/20 blur-[120px] rounded-t-full pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-indigo-600/20 blur-[120px] rounded-t-full pointer-events-none" />
       
       {/* Glowing Rings */}
-      <div className="absolute bottom-[-300px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] border border-blue-500/30 rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-300px] left-1/2 -translate-x-1/2 w-[800px] h-[800px] border border-indigo-500/30 rounded-full pointer-events-none" />
       <div className="absolute bottom-[-400px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] border-2 border-indigo-500/20 rounded-full pointer-events-none" />
-      <div className="absolute bottom-[-450px] left-1/2 -translate-x-1/2 w-[1100px] h-[1100px] border border-purple-500/10 rounded-full pointer-events-none" />
+      <div className="absolute bottom-[-450px] left-1/2 -translate-x-1/2 w-[1100px] h-[1100px] border border-violet-500/10 rounded-full pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
         <motion.div
@@ -58,7 +78,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass mb-8"
         >
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+          <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
           <span className="text-sm text-gray-300">Hệ thống tự động hóa nội dung #1</span>
         </motion.div>
 
@@ -87,13 +107,15 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <button className="bg-liquid text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-[0_0_40px_rgba(59,130,246,0.6)] transition-all duration-300 flex items-center gap-2 group">
-            Bắt đầu miễn phí
-            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </button>
-          <button className="glass text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300">
+          <Link to="/pricing">
+            <ShinyButton>
+              Bắt đầu miễn phí
+            </ShinyButton>
+          </Link>
+          <button
+            className="glass text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-all duration-300"
+            onClick={() => document.getElementById('lead-form')?.scrollIntoView({ behavior: 'smooth' })}
+          >
             Xem Demo
           </button>
         </motion.div>

@@ -3,7 +3,7 @@ import { Quote } from 'lucide-react';
 
 const testimonials = [
   {
-    content: "Từ khi dùng AutoBrand, tôi không còn phải đau đầu mỗi sáng nghĩ xem hôm nay đăng gì. Hệ thống tự động viết theo đúng văn phong của tôi, hình ảnh thì cực kỳ chuyên nghiệp.",
+    content: "Từ khi dùng Trợ lý Creator, tôi không còn phải đau đầu mỗi sáng nghĩ xem hôm nay đăng gì. Hệ thống tự động viết theo đúng văn phong của tôi, hình ảnh thì cực kỳ chuyên nghiệp.",
     author: "Nguyễn Văn A",
     role: "Chuyên gia Tài chính",
     avatar: "https://picsum.photos/seed/user1/100/100"
@@ -43,7 +43,7 @@ export default function Testimonials() {
               className="glass-card p-8 flex flex-col justify-between"
             >
               <div>
-                <Quote className="w-8 h-8 text-blue-500/50 mb-6" />
+                <Quote className="w-8 h-8 text-indigo-500/50 mb-6" />
                 <p className="text-gray-300 leading-relaxed mb-8">
                   "{testimonial.content}"
                 </p>
@@ -57,7 +57,7 @@ export default function Testimonials() {
                 />
                 <div>
                   <div className="text-white font-medium">{testimonial.author}</div>
-                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                  <div className="text-sm text-gray-400">{testimonial.role}</div>
                 </div>
               </div>
             </motion.div>

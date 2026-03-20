@@ -5,7 +5,7 @@ const features = [
   {
     title: "Quy trình 5 bước tự động",
     description: "Từ ý tưởng đến xuất bản, mọi thứ được vận hành trơn tru không cần can thiệp thủ công.",
-    icon: <Workflow className="w-6 h-6 text-blue-400" />,
+    icon: <Workflow className="w-6 h-6 text-indigo-400" />,
     colSpan: "md:col-span-2",
     content: (
       <div className="mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative">
@@ -18,7 +18,7 @@ const features = [
           { step: 5, label: "Tạo hình ảnh" }
         ].map((s) => (
           <div key={s.step} className="flex flex-col items-center gap-2 bg-[#030712] p-2 rounded-lg z-10">
-            <div className="w-10 h-10 rounded-full bg-blue-500/20 border border-blue-500/50 flex items-center justify-center text-blue-400 font-bold">
+            <div className="w-10 h-10 rounded-full bg-indigo-500/20 border border-indigo-500/50 flex items-center justify-center text-indigo-400 font-bold">
               {s.step}
             </div>
             <span className="text-xs text-gray-400 text-center w-20">{s.label}</span>
@@ -30,13 +30,13 @@ const features = [
   {
     title: "6 AI Agents chuyên biệt",
     description: "Hệ thống F1-F6 đóng vai trò như một đội ngũ chuyên gia thực thụ.",
-    icon: <Bot className="w-6 h-6 text-purple-400" />,
+    icon: <Bot className="w-6 h-6 text-violet-400" />,
     colSpan: "md:col-span-1",
     content: (
       <div className="mt-6 grid grid-cols-2 gap-3">
         {['F1: Strategist', 'F2: Writer', 'F3: Editor', 'F4: Designer', 'F5: Scheduler', 'F6: Analyst'].map((agent, i) => (
           <div key={i} className="bg-white/5 rounded-lg p-2 text-xs text-gray-300 border border-white/5 flex items-center gap-2">
-            <div className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+            <div className="w-1.5 h-1.5 rounded-full bg-violet-400" />
             {agent}
           </div>
         ))}
@@ -46,12 +46,12 @@ const features = [
   {
     title: "7 Phong cách hình ảnh",
     description: "Cá nhân hóa hình ảnh theo đúng định vị thương hiệu của bạn.",
-    icon: <ImageIcon className="w-6 h-6 text-pink-400" />,
+    icon: <ImageIcon className="w-6 h-6 text-violet-400" />,
     colSpan: "md:col-span-1",
     content: (
       <div className="mt-6 flex flex-wrap gap-2">
         {['Minimalist', 'Cinematic', 'Corporate', 'Creative', 'Cyberpunk', 'Vintage', '3D Render'].map((style, i) => (
-          <span key={i} className="px-3 py-1 rounded-full bg-pink-500/10 text-pink-300 text-xs border border-pink-500/20">
+          <span key={i} className="px-3 py-1 rounded-full bg-violet-500/10 text-violet-300 text-xs border border-violet-500/20">
             {style}
           </span>
         ))}
@@ -61,7 +61,7 @@ const features = [
   {
     title: "Kiến trúc kỹ thuật mạnh mẽ",
     description: "Được xây dựng trên nền tảng công nghệ tiên tiến nhất hiện nay.",
-    icon: <Cpu className="w-6 h-6 text-emerald-400" />,
+    icon: <Cpu className="w-6 h-6 text-indigo-400" />,
     colSpan: "md:col-span-2",
     content: (
       <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -71,7 +71,7 @@ const features = [
           { name: "Midjourney", role: "Image Generation" },
           { name: "Notion", role: "Content Management" }
         ].map((tech, i) => (
-          <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-emerald-500/30 transition-colors">
+          <div key={i} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:border-indigo-500/30 transition-colors">
             <div className="font-semibold text-white mb-1">{tech.name}</div>
             <div className="text-xs text-gray-400">{tech.role}</div>
           </div>
