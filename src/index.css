@@ -55,6 +55,25 @@
   .font-display {
     font-family: var(--font-display);
   }
+
+  /* Premium card hover — subtle lift + glow */
+  .card-hover-premium {
+    @apply transition-all duration-300 ease-out;
+  }
+  .card-hover-premium:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.08), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Section visual divider */
+  .section-divider {
+    @apply relative;
+  }
+  .section-divider::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.3), transparent);
+  }
 }
 
 /* Liquid Gradient Animation */
@@ -88,6 +107,20 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Global body typography polish */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(99, 102, 241, 0.5);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -98,5 +131,9 @@ html {
   }
   .bg-liquid { animation: none; }
   .star { animation: none; }
+  .card-hover-premium:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 

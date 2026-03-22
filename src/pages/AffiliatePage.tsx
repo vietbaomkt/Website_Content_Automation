@@ -1,8 +1,10 @@
 import { motion } from 'motion/react';
-import { Gift, Percent, ArrowRight, Users, CreditCard, Repeat, Zap, ShieldCheck, Clock, DollarSign, MessageCircle, Mail } from 'lucide-react';
+import { Gift, Percent, Users, CreditCard, Repeat, Zap, ShieldCheck, Clock, DollarSign, MessageCircle, Mail } from 'lucide-react';
 import { ShinyButton } from '@/components/ui/shiny-button';
 import { Hero } from '@/components/ui/hero-lamp';
+import { FAQ1 } from '@/components/ui/faq-monochrome';
 import { useSEO } from '@/lib/useSEO';
+import { useLanguage } from '@/src/lib/LanguageContext';
 
 const steps = [
   {
@@ -37,30 +39,36 @@ const incomeExamples = [
   { plan: 'Premium', price: '8.000.000đ', first: '2.400.000đ', recurring: '800.000đ' },
 ];
 
-const faqs = [
+const affiliateFaqs = [
   {
-    q: 'Ai có thể tham gia chương trình Affiliate?',
-    a: 'Bất kỳ ai — không cần là khách hàng hiện tại của Trợ lý Creator. Bạn chỉ cần đăng ký nhận link giới thiệu và chia sẻ cho người cần.',
+    question: 'Ai có thể tham gia chương trình Affiliate?',
+    answer: 'Bất kỳ ai — không cần là khách hàng hiện tại của Trợ lý Creator. Bạn chỉ cần đăng ký nhận link giới thiệu và chia sẻ cho người cần.',
+    meta: 'Tham gia',
   },
   {
-    q: 'Hoa hồng recurring được trả trong bao lâu?',
-    a: 'Bạn nhận 10% hoa hồng hàng tháng trong suốt thời gian khách hàng được giới thiệu còn sử dụng dịch vụ. Không giới hạn thời gian.',
+    question: 'Hoa hồng recurring được trả trong bao lâu?',
+    answer: 'Bạn nhận 10% hoa hồng hàng tháng trong suốt thời gian khách hàng được giới thiệu còn sử dụng dịch vụ. **Không giới hạn thời gian.**',
+    meta: 'Hoa hồng',
   },
   {
-    q: 'Phương thức chi trả hoa hồng như thế nào?',
-    a: 'Hoa hồng được chuyển khoản ngân hàng vào đầu mỗi tháng (trước ngày 5). Tối thiểu 500.000đ mới thực hiện chi trả. Nếu chưa đủ sẽ cộng dồn sang tháng sau.',
+    question: 'Phương thức chi trả hoa hồng như thế nào?',
+    answer: 'Hoa hồng được chuyển khoản ngân hàng vào **đầu mỗi tháng** (trước ngày 5). Tối thiểu **500.000đ** mới thực hiện chi trả. Nếu chưa đủ sẽ cộng dồn sang tháng sau.',
+    meta: 'Chi trả',
   },
   {
-    q: 'Có giới hạn số người giới thiệu không?',
-    a: 'Không giới hạn! Bạn giới thiệu càng nhiều, thu nhập càng cao. Một số đối tác đang kiếm 5–10 triệu/tháng chỉ từ hoa hồng referral.',
+    question: 'Có giới hạn số người giới thiệu không?',
+    answer: '**Không giới hạn!** Bạn giới thiệu càng nhiều, thu nhập càng cao. Một số đối tác đang kiếm **5–10 triệu/tháng** chỉ từ hoa hồng referral.',
+    meta: 'Giới hạn',
   },
   {
-    q: 'Nếu khách hàng nâng cấp gói thì hoa hồng có tăng không?',
-    a: 'Có! Hoa hồng recurring tính trên giá gói hiện tại. Nếu khách nâng cấp từ Starter lên Premium, hoa hồng của bạn tự động tăng theo.',
+    question: 'Nếu khách hàng nâng cấp gói thì hoa hồng có tăng không?',
+    answer: '**Có!** Hoa hồng recurring tính trên giá gói hiện tại. Nếu khách nâng cấp từ Starter lên Premium, hoa hồng của bạn **tự động tăng theo**.',
+    meta: 'Nâng cấp',
   },
   {
-    q: 'Làm sao theo dõi lượt giới thiệu và hoa hồng?',
-    a: 'Bạn sẽ được cấp dashboard riêng qua Notion để theo dõi: số lượt giới thiệu, trạng thái chuyển đổi, và tổng hoa hồng đã/sẽ nhận.',
+    question: 'Làm sao theo dõi lượt giới thiệu và hoa hồng?',
+    answer: 'Bạn sẽ được cấp **dashboard riêng qua Notion** để theo dõi: số lượt giới thiệu, trạng thái chuyển đổi, và tổng hoa hồng đã/sẽ nhận.',
+    meta: 'Tracking',
   },
 ];
 
@@ -260,41 +268,12 @@ export default function AffiliatePage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 relative z-10">
-        <div className="max-w-3xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold mb-4">Câu hỏi thường gặp</h2>
-            <p className="text-gray-400">Mọi thắc mắc về chương trình Affiliate.</p>
-          </motion.div>
-
-          <div className="space-y-4">
-            {faqs.map((faq, i) => (
-              <motion.details
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.05 * i }}
-                className="group rounded-2xl border border-white/10 bg-white/5 overflow-hidden"
-              >
-                <summary className="flex items-center justify-between cursor-pointer p-5 text-white font-medium hover:bg-white/5 transition-colors list-none">
-                  <span>{faq.q}</span>
-                  <ArrowRight size={16} className="text-gray-400 transition-transform group-open:rotate-90 shrink-0 ml-4" />
-                </summary>
-                <div className="px-5 pb-5 text-gray-400 text-sm leading-relaxed">
-                  {faq.a}
-                </div>
-              </motion.details>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* FAQ — Monochrome */}
+      <FAQ1
+        title="Câu hỏi thường gặp"
+        subtitle="Mọi thắc mắc về chương trình Affiliate"
+        items={affiliateFaqs}
+      />
 
       {/* CTA */}
       <section className="py-24 relative z-10 text-center">
@@ -311,7 +290,7 @@ export default function AffiliatePage() {
               Đăng ký ngay hôm nay — nhận link giới thiệu cá nhân và bắt đầu kiếm hoa hồng từ lượt giới thiệu đầu tiên.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="https://zalo.me/0903030045" target="_blank" rel="noopener noreferrer">
+              <a href="https://zalo.me/0356433455" target="_blank" rel="noopener noreferrer">
                 <ShinyButton>
                   <MessageCircle size={16} className="inline mr-2" />
                   Đăng ký qua Zalo

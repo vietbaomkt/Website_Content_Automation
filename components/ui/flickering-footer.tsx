@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import GradientMenu from "@/components/ui/gradient-menu";
+import { useLanguage } from "@/src/lib/LanguageContext";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -267,33 +268,38 @@ function useMediaQuery(query: string) {
   return value;
 }
 
-const footerLinks = [
-  {
-    title: "Sản phẩm",
-    links: [
-      { id: 1, title: "Dịch vụ", url: "/services" },
-      { id: 2, title: "Bảng giá", url: "/pricing" },
-      { id: 3, title: "Thư viện", url: "/library" },
-    ],
-  },
-  {
-    title: "Công ty",
-    links: [
-      { id: 4, title: "Về tôi", url: "/about" },
-      { id: 5, title: "Liên hệ", url: "mailto:Vietbao.official@gmail.com" },
-    ],
-  },
-  {
-    title: "Hỗ trợ",
-    links: [
-      { id: 6, title: "Chương trình Affiliate", url: "/affiliate" },
-      { id: 7, title: "Chính sách & Điều khoản", url: "/policy" },
-    ],
-  },
-];
+function useFooterLinks() {
+  const { t } = useLanguage();
+  return [
+    {
+      title: t('footer.product'),
+      links: [
+        { id: 1, title: t('footer.services'), url: "/services" },
+        { id: 2, title: t('footer.pricing'), url: "/pricing" },
+        { id: 3, title: t('footer.library'), url: "/library" },
+      ],
+    },
+    {
+      title: t('footer.company'),
+      links: [
+        { id: 4, title: t('footer.aboutUs'), url: "/about" },
+        { id: 5, title: t('footer.contact'), url: "mailto:Vietbao.official@gmail.com" },
+      ],
+    },
+    {
+      title: t('footer.support'),
+      links: [
+        { id: 6, title: t('footer.affiliate'), url: "/affiliate" },
+        { id: 7, title: t('footer.policy'), url: "/policy" },
+      ],
+    },
+  ];
+}
 
 export function FlickeringFooter() {
   const tablet = useMediaQuery("(max-width: 1024px)");
+  const { t } = useLanguage();
+  const footerLinks = useFooterLinks();
 
   return (
     <footer id="footer" className="w-full pb-0 relative z-[1]">
@@ -304,11 +310,11 @@ export function FlickeringFooter() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between p-10">
         <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0">
           <a href="/" className="flex items-center gap-2">
-            <img src="/images/Avatar.webp" alt="Trợ lý Creator" loading="lazy" className="w-8 h-8 rounded-full object-cover" />
-            <p className="text-xl font-semibold text-white">Trợ lý Creator</p>
+            <img src="/images/Avatar.webp" alt={t('nav.brandName')} loading="lazy" className="w-8 h-8 rounded-full object-cover" />
+            <p className="text-xl font-semibold text-white">{t('nav.brandName')}</p>
           </a>
           <p className="tracking-tight text-gray-400 font-medium text-sm leading-relaxed">
-            Giải pháp tự động hóa nội dung đa kênh bằng AI — giúp bạn xây dựng nhân hiệu chuyên nghiệp mà không tốn nhiều thời gian.
+            {t('footer.brandDesc')}
           </p>
         </div>
         <div className="pt-5 md:w-1/2">
@@ -338,7 +344,7 @@ export function FlickeringFooter() {
         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-[#030712] z-10 from-40%" />
         <div className="absolute inset-0 mx-6">
           <FlickeringGrid
-            text={tablet ? "Trợ lý Creator" : "Trợ lý Creator AI"}
+            text={tablet ? t('footer.flickerTextMobile') : t('footer.flickerText')}
             fontSize={tablet ? 70 : 90}
             className="h-full w-full"
             squareSize={2}

@@ -4,40 +4,38 @@ import React from "react";
 import { Clock, Lightbulb, DollarSign, HeartCrack, BrainCog } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/src/lib/LanguageContext";
+
+const icons = [
+  <Lightbulb className="h-4 w-4" />,
+  <Clock className="h-4 w-4" />,
+  <DollarSign className="h-4 w-4" />,
+  <HeartCrack className="h-4 w-4" />,
+  <BrainCog className="h-4 w-4" />,
+];
+
+const areas = [
+  "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]",
+  "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
+  "md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]",
+  "md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]",
+  "md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]",
+];
 
 export function GlowingEffectDemo() {
+  const { lang } = useLanguage();
+
   return (
     <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
-      <GridItem
-        area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-        icon={<Lightbulb className="h-4 w-4" />}
-        title="Hết ý tưởng sau 2 tuần"
-        description="Ngồi cả buổi sáng chỉ để nghĩ caption. Cuối cùng đăng đại một bài cho có."
-      />
-      <GridItem
-        area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-        icon={<Clock className="h-4 w-4" />}
-        title="Không đủ thời gian"
-        description="Mỗi ngày cần 5 bài. Viết + thiết kế + lên lịch = mất 4-5 tiếng. Ai trả lương cho bạn?"
-      />
-      <GridItem
-        area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
-        icon={<DollarSign className="h-4 w-4" />}
-        title="Thuê đội ngũ quá đắt"
-        description="Content Writer + Designer + PM = 30-40 triệu/tháng. Nhân hiệu mới nổi không kham nổi."
-      />
-      <GridItem
-        area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
-        icon={<HeartCrack className="h-4 w-4" />}
-        title='Outsource mất "hồn" nhân hiệu'
-        description="Agency viết đúng format nhưng sai giọng. Đọc lên không thấy mình trong đó."
-      />
-      <GridItem
-        area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-        icon={<BrainCog className="h-4 w-4" />}
-        title="Kiệt sức sáng tạo"
-        description="80% nhân hiệu cá nhân dừng đăng bài sau 3 tháng. Không phải lười — mà là kiệt sức."
-      />
+      {lang.painPoints.map((point, i) => (
+        <GridItem
+          key={i}
+          area={areas[i]}
+          icon={icons[i]}
+          title={point.title}
+          description={point.desc}
+        />
+      ))}
     </ul>
   );
 }

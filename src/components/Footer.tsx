@@ -3,7 +3,7 @@ import GradientMenu from '@/components/ui/gradient-menu';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#030712] pt-16 pb-8">
+    <footer className="border-t border-white/10 bg-gradient-to-t from-[#030712] via-[#030712] to-[#050a18] pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* GradientMenu — Social Links */}
         <div className="flex justify-center mb-12">
@@ -13,10 +13,10 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-12">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-6">
-              <img src="/images/Avatar.png" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
-              <span className="text-white font-display font-bold text-xl">Trợ lý Creator</span>
+              <img src="/images/Avatar.webp" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
+              <span className="font-display font-bold text-xl text-gradient">Trợ lý Creator</span>
             </div>
-            <p className="text-gray-400 max-w-sm">
+            <p className="text-gray-400 max-w-sm leading-relaxed">
               Giải pháp tự động hóa nội dung đa kênh bằng AI, giúp bạn xây dựng nhân hiệu chuyên nghiệp mà không tốn nhiều thời gian và chi phí.
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-white/10 pt-8 flex items-center justify-center">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-500 text-sm">
             © {new Date().getFullYear()} Trợ lý Creator. All rights reserved.
           </p>
         </div>

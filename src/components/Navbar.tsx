@@ -1,20 +1,22 @@
 import { motion } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sparkles, Briefcase, CreditCard, BookOpen, UserCircle } from 'lucide-react';
+import { Briefcase, CreditCard, BookOpen, UserCircle } from 'lucide-react';
+import { useLanguage } from '@/src/lib/LanguageContext';
+import LanguageSwitcher from '@/src/components/LanguageSwitcher';
 
 interface NavDockItem {
   id: string;
   icon: React.ReactNode;
-  label: string;
+  labelKey: string;
   to: string;
 }
 
-const navItems: NavDockItem[] = [
-  { id: 'services', icon: <Briefcase size={18} />, label: 'Dịch vụ', to: '/services' },
-  { id: 'pricing', icon: <CreditCard size={18} />, label: 'Bảng giá', to: '/pricing' },
-  { id: 'library', icon: <BookOpen size={18} />, label: 'Thư viện', to: '/library' },
-  { id: 'about', icon: <UserCircle size={18} />, label: 'Về tôi', to: '/about' },
+const navItemsConfig: NavDockItem[] = [
+  { id: 'services', icon: <Briefcase size={18} />, labelKey: 'nav.services', to: '/services' },
+  { id: 'pricing', icon: <CreditCard size={18} />, labelKey: 'nav.pricing', to: '/pricing' },
+  { id: 'library', icon: <BookOpen size={18} />, labelKey: 'nav.library', to: '/library' },
+  { id: 'about', icon: <UserCircle size={18} />, labelKey: 'nav.about', to: '/about' },
 ];
 
 export default function Navbar() {
@@ -24,6 +26,7 @@ export default function Navbar() {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,13 +63,13 @@ export default function Navbar() {
       <div className="glass rounded-full px-4 py-2.5 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2">
-          <img src="/images/Avatar.webp" alt="Trợ lý Creator" className="w-8 h-8 rounded-full object-cover" />
-          <span className="text-white font-display font-bold text-xl hidden sm:block">Trợ lý Creator</span>
+          <img src="/images/Avatar.webp" alt={t('nav.brandName')} className="w-8 h-8 rounded-full object-cover" />
+          <span className="text-white font-display font-bold text-xl hidden sm:block">{t('nav.brandName')}</span>
         </Link>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-1">
-          {navItems.map((item) => {
+          {navItemsConfig.map((item) => {
             const isHovered = hoveredItem === item.id;
             const isActive = location.pathname === item.to;
             return (
@@ -104,7 +107,7 @@ export default function Navbar() {
                     text-sm transition-all duration-300
                     ${isActive || isHovered ? 'text-white' : 'text-gray-300'}
                   `}>
-                    {item.label}
+                    {t(item.labelKey)}
                   </span>
                 </Link>
               </div>
@@ -112,28 +115,33 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Mobile menu button */}
-        <button 
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-white p-2"
-          aria-label="Menu điều hướng"
-          aria-expanded={menuOpen}
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {menuOpen 
-              ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            }
-          </svg>
-        </button>
+        {/* Right side: Language Switcher + CTA + Mobile menu */}
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher />
 
-        {/* CTA */}
-        <Link 
-          to="/pricing" 
-          className="hidden md:block bg-orange-500 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-orange-600 transition-colors"
-        >
-          Bắt đầu
-        </Link>
+          {/* Mobile menu button */}
+          <button 
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-white p-2"
+            aria-label={t('nav.menuLabel')}
+            aria-expanded={menuOpen}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {menuOpen 
+                ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              }
+            </svg>
+          </button>
+
+          {/* CTA */}
+          <Link 
+            to="/pricing" 
+            className="hidden md:block bg-orange-500 text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-orange-600 transition-all hover:shadow-[0_0_20px_rgba(249,115,22,0.3)]"
+          >
+            {t('nav.cta')}
+          </Link>
+        </div>
       </div>
 
       {/* Mobile dropdown */}
@@ -144,7 +152,7 @@ export default function Navbar() {
           className="mt-2 glass rounded-2xl p-4 md:hidden"
         >
           <div className="space-y-1">
-            {navItems.map((item) => {
+            {navItemsConfig.map((item) => {
               const isActive = location.pathname === item.to;
               return (
                 <Link
@@ -155,7 +163,7 @@ export default function Navbar() {
                   }`}
                 >
                   {item.icon}
-                  <span>{item.label}</span>
+                  <span>{t(item.labelKey)}</span>
                 </Link>
               );
             })}
@@ -163,7 +171,7 @@ export default function Navbar() {
               to="/pricing"
               className="block mt-2 bg-orange-500 text-white px-4 py-3 rounded-xl text-center font-medium hover:bg-orange-600 transition-colors"
             >
-              Bắt đầu
+              {t('nav.cta')}
             </Link>
           </div>
         </motion.div>

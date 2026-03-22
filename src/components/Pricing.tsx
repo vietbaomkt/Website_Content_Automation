@@ -2,71 +2,17 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Check, X, Sparkles } from 'lucide-react';
 import { ZoomBookingPopup } from '@/components/ui/zoom-booking-popup';
-
-const plans = [
-  {
-    name: "Starter",
-    price: "3.500.000đ",
-    period: "/tháng",
-    description: "Bắt đầu xây dựng nhân hiệu với nền tảng vững chắc.",
-    features: [
-      { text: "3 bài đăng/ngày (90 bài/tháng)", included: true },
-      { text: "Cá nhân hóa nội dung (ADN nhân hiệu)", included: true },
-      { text: "Cá nhân hóa hình ảnh (gu riêng)", included: true },
-      { text: "Lên lịch tự động Notion", included: true },
-      { text: "Hỗ trợ qua Email", included: true },
-      { text: "💎 GEM tạo ảnh chủ động", included: false },
-      { text: "🧠 NotebookLM tri thức chuyên sâu", included: false },
-    ],
-    highlight: false,
-    cta: "Bắt đầu với Starter",
-  },
-  {
-    name: "Growth",
-    price: "5.000.000đ",
-    period: "/tháng",
-    description: "Đáng giá nhất — gấp đôi sản lượng, chủ động tạo ảnh bất kỳ lúc nào.",
-    features: [
-      { text: "5 bài đăng/ngày (150 bài/tháng)", included: true },
-      { text: "Cá nhân hóa nội dung (ADN nhân hiệu)", included: true },
-      { text: "Cá nhân hóa hình ảnh (gu riêng)", included: true },
-      { text: "Lên lịch tự động Notion", included: true },
-      { text: "Hỗ trợ ưu tiên qua Zalo", included: true },
-      { text: "💎 GEM tạo ảnh chủ động", included: true },
-      { text: "🧠 NotebookLM tri thức chuyên sâu", included: false },
-    ],
-    highlight: true,
-    badge: "Đáng Giá Nhất ⭐",
-    cta: "Chọn Growth — Tiết kiệm nhất",
-    savingNote: "Chỉ +1.5tr so với Starter → gấp đôi output + GEM",
-  },
-  {
-    name: "Premium",
-    price: "8.000.000đ",
-    period: "/tháng",
-    description: "Cho chuyên gia, coach, giảng viên cần nội dung có chiều sâu tri thức.",
-    features: [
-      { text: "5 bài đăng/ngày (150 bài/tháng)", included: true },
-      { text: "Cá nhân hóa nội dung (ADN nhân hiệu)", included: true },
-      { text: "Cá nhân hóa hình ảnh (gu riêng)", included: true },
-      { text: "Lên lịch tự động Notion", included: true },
-      { text: "Hỗ trợ ưu tiên + Quản lý riêng", included: true },
-      { text: "💎 GEM tạo ảnh chủ động", included: true },
-      { text: "🧠 NotebookLM tri thức chuyên sâu", included: true },
-    ],
-    highlight: false,
-    cta: "Nâng cấp Premium",
-  }
-];
+import { useLanguage } from '@/src/lib/LanguageContext';
 
 export default function Pricing() {
   const [showZoomPopup, setShowZoomPopup] = useState(false);
+  const { t, lang } = useLanguage();
 
   return (
     <section id="pricing" className="py-32 relative overflow-hidden">
       {/* Background Text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[15vw] font-display font-bold text-white/[0.02] select-none pointer-events-none whitespace-nowrap z-0">
-        Bảng Giá
+        {t('pricing.bgText')}
       </div>
 
       {/* Background Glows */}
@@ -76,23 +22,23 @@ export default function Pricing() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-20">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
-            Đầu tư thông minh, <span className="text-gradient">tiết kiệm khổng lồ</span>
+            {t('pricing.title')}<span className="text-gradient">{t('pricing.titleHighlight')}</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Thay vì trả 30-40 triệu/tháng cho đội ngũ 3 người, hãy để hệ thống AI cá nhân hóa làm điều đó — với chi phí chỉ bằng 1/8.
+            {t('pricing.subtitle')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
-          {plans.map((plan, index) => (
+          {lang.pricing.plans.map((plan, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`relative p-8 rounded-[2rem] backdrop-blur-xl transition-all duration-300 flex flex-col ${
-                plan.highlight 
+              className={`relative p-8 rounded-[2rem] backdrop-blur-xl transition-all duration-300 flex flex-col card-hover-premium ${
+                index === 1 
                   ? 'bg-white/10 border-2 border-indigo-500/50 shadow-[0_0_40px_rgba(99,102,241,0.2)] md:-translate-y-4 z-10' 
                   : 'bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/[0.07]'
               }`}
@@ -112,7 +58,7 @@ export default function Pricing() {
               <div className="mb-6">
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-display font-bold text-white">{plan.price}</span>
-                  <span className="text-gray-400">{plan.period}</span>
+                  <span className="text-gray-400">{t('pricing.period')}</span>
                 </div>
                 {plan.savingNote && (
                   <p className="text-xs text-indigo-400 mt-2 font-medium">{plan.savingNote}</p>
@@ -123,7 +69,7 @@ export default function Pricing() {
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
                     {feature.included ? (
-                      <Check className={`w-5 h-5 shrink-0 mt-0.5 ${plan.highlight ? 'text-indigo-400' : 'text-emerald-400'}`} />
+                      <Check className={`w-5 h-5 shrink-0 mt-0.5 ${index === 1 ? 'text-indigo-400' : 'text-emerald-400'}`} />
                     ) : (
                       <X className="w-5 h-5 shrink-0 mt-0.5 text-gray-600" />
                     )}
@@ -137,9 +83,9 @@ export default function Pricing() {
               <button
                 onClick={() => setShowZoomPopup(true)}
                 className={`w-full py-4 rounded-xl font-semibold transition-all duration-300 cursor-pointer ${
-                plan.highlight
+                index === 1
                   ? 'bg-orange-500 text-white hover:bg-orange-600 shadow-[0_0_20px_rgba(249,115,22,0.3)]'
-                  : 'bg-white/10 text-white hover:bg-white/20'
+                  : 'bg-white/10 text-white hover:bg-orange-500/80 hover:shadow-[0_0_16px_rgba(249,115,22,0.2)] border border-white/10 hover:border-orange-500/50'
               }`}>
                 {plan.cta}
               </button>
@@ -154,24 +100,24 @@ export default function Pricing() {
           viewport={{ once: true }}
           className="mt-24 glass-card p-8 md:p-12 text-center"
         >
-          <h3 className="text-2xl font-display font-bold text-white mb-8">So sánh chi phí hàng tháng</h3>
+          <h3 className="text-2xl font-display font-bold text-white mb-8">{t('pricing.compTitle')}</h3>
           <div className="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-12">
             <div className="text-center flex-1">
-              <div className="text-gray-400 mb-2 text-sm">Đội ngũ truyền thống</div>
-              <div className="text-3xl font-bold text-red-400 line-through decoration-red-500/50">35.000.000đ</div>
-              <div className="text-xs text-gray-500 mt-2">Viết bài + Thiết kế + Quản lý</div>
+              <div className="text-gray-400 mb-2 text-sm">{t('pricing.compTraditional')}</div>
+              <div className="text-3xl font-bold text-red-400 line-through decoration-red-500/50">{t('pricing.compTraditionalCost')}</div>
+              <div className="text-xs text-gray-500 mt-2">{t('pricing.compTraditionalDetail')}</div>
             </div>
             <div className="hidden md:block w-px h-16 bg-white/10" />
             <div className="text-center flex-1">
-              <div className="text-gray-400 mb-2 text-sm">Tự vận hành (ChatGPT + Tools)</div>
-              <div className="text-2xl font-bold text-amber-400">2.500.000đ + 90 giờ</div>
-              <div className="text-xs text-gray-500 mt-2">API + Premium + 3h/ngày công sức</div>
+              <div className="text-gray-400 mb-2 text-sm">{t('pricing.compSelf')}</div>
+              <div className="text-2xl font-bold text-amber-400">{t('pricing.compSelfCost')}</div>
+              <div className="text-xs text-gray-500 mt-2">{t('pricing.compSelfDetail')}</div>
             </div>
             <div className="hidden md:block w-px h-16 bg-white/10" />
             <div className="text-center flex-1">
-              <div className="text-indigo-400 font-medium mb-2 text-sm">Trợ lý Creator (Gói Growth)</div>
-              <div className="text-4xl font-display font-bold text-white text-gradient">5.000.000đ</div>
-              <div className="text-xs text-green-400 mt-2 font-medium">Tiết kiệm 30 triệu + 75 giờ/tháng</div>
+              <div className="text-indigo-400 font-medium mb-2 text-sm">{t('pricing.compUs')}</div>
+              <div className="text-4xl font-display font-bold text-white text-gradient">{t('pricing.compUsCost')}</div>
+              <div className="text-xs text-green-400 mt-2 font-medium">{t('pricing.compUsSaving')}</div>
             </div>
           </div>
         </motion.div>
@@ -181,4 +127,3 @@ export default function Pricing() {
     </section>
   );
 }
-

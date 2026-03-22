@@ -6,20 +6,23 @@ import {
 } from 'lucide-react';
 import { Hero } from '@/components/ui/hero-lamp';
 import { useSEO } from '@/lib/useSEO';
+import { useLanguage } from '@/src/lib/LanguageContext';
 
 export default function LibraryPage() {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const { t } = useLanguage();
+
   useSEO({
-    title: 'Thư viện mẫu nội dung - Trợ lý Creator',
-    description: 'Khám phá thư viện mẫu nội dung AI đa dạng: Pain Mirror, Paradigm Shift, Framework, Proof & Story, Carousel, Quote Card.',
+    title: t('libraryPage.seoTitle'),
+    description: t('libraryPage.seoDesc'),
   });
 
   return (
     <>
       {/* Hero Lamp */}
       <Hero
-        title={<>Thư <span className="text-gradient">viện</span></>}
-        subtitle="Prompts, hình ảnh mẫu và template nội dung — tất cả đều có thể copy với 1 click."
+        title={<>{t('libraryPage.title')}<span className="text-gradient">{t('libraryPage.titleHighlight')}</span></>}
+        subtitle={t('libraryPage.subtitle')}
         subtitleClassName="text-lg md:text-xl max-w-[600px]"
       />
 
@@ -156,13 +159,14 @@ const prompts = [
 ];
 
 const sampleImages = [
-  { src: 'https://images.unsplash.com/photo-1504051771394-dd2e66b2e08f?w=400&auto=format&fit=crop', alt: 'Carousel', style: 'Carousel', icon: <GalleryHorizontal size={14} />, promptSnippet: 'Create a carousel slide with brand identity, clean layout, minimal text, premium feel' },
-  { src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&auto=format&fit=crop', alt: 'Normal', style: 'Normal', icon: <Camera size={14} />, promptSnippet: 'Professional portrait photo, natural light, lifestyle setting, authentic expression' },
-  { src: 'https://images.unsplash.com/photo-1581403341630-a6e0b9d2d257?w=400&auto=format&fit=crop', alt: 'Infographic', style: 'Infographic', icon: <PieChart size={14} />, promptSnippet: 'Clean infographic design, data visualization, modern chart, brand colors' },
-  { src: 'https://images.unsplash.com/photo-1526510747491-58f928ec870f?w=400&auto=format&fit=crop', alt: 'Comparison', style: 'Comparison', icon: <Scale size={14} />, promptSnippet: 'Split comparison layout, before/after, side by side, clear visual contrast' },
-  { src: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop', alt: 'Creative', style: 'Creative', icon: <Palette size={14} />, promptSnippet: 'Creative artistic portrait, bold colors, unique composition, editorial style' },
-  { src: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&auto=format&fit=crop', alt: 'Poster Film', style: 'Poster Film', icon: <Film size={14} />, promptSnippet: 'Cinematic poster style, moody lighting, film grain, dramatic composition' },
-  { src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop', alt: 'Quote', style: 'Quote Card', icon: <Quote size={14} />, promptSnippet: 'Minimalist quote card, elegant typography, subtle background, brand accent' },
+  { src: '/images/library/Library (1).webp', alt: 'Carousel Style', style: 'Carousel', icon: <GalleryHorizontal size={14} />, promptSnippet: 'Create a carousel slide with brand identity, clean layout, minimal text, premium feel' },
+  { src: '/images/library/Library (2).webp', alt: 'Normal Style', style: 'Normal', icon: <Camera size={14} />, promptSnippet: 'Professional portrait photo, natural light, lifestyle setting, authentic expression' },
+  { src: '/images/library/Library (3).webp', alt: 'Infographic Style', style: 'Infographic', icon: <PieChart size={14} />, promptSnippet: 'Clean infographic design, data visualization, modern chart, brand colors' },
+  { src: '/images/library/Library (4).webp', alt: 'Comparison Style', style: 'Comparison', icon: <Scale size={14} />, promptSnippet: 'Split comparison layout, before/after, side by side, clear visual contrast' },
+  { src: '/images/library/Library (5).webp', alt: 'Creative Style', style: 'Creative', icon: <Palette size={14} />, promptSnippet: 'Creative artistic portrait, bold colors, unique composition, editorial style' },
+  { src: '/images/library/Library (6).webp', alt: 'Poster Film Style', style: 'Poster Film', icon: <Film size={14} />, promptSnippet: 'Cinematic poster style, moody lighting, film grain, dramatic composition' },
+  { src: '/images/library/Library (7).webp', alt: 'Quote Card Style', style: 'Quote Card', icon: <Quote size={14} />, promptSnippet: 'Minimalist quote card, elegant typography, subtle background, brand accent' },
+  { src: '/images/library/Library (8).webp', alt: 'Brand Visual', style: 'Brand Visual', icon: <Palette size={14} />, promptSnippet: 'Bold brand visual, consistent identity, signature style, high impact' },
 ];
 
 const templates = [

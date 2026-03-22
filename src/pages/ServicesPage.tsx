@@ -10,22 +10,25 @@ import {
 } from 'lucide-react';
 import { useSEO } from '@/lib/useSEO';
 import DisplayCards from '@/components/ui/display-cards';
-import InteractiveSelector from '@/components/ui/interactive-selector';
+import { FocusCards } from '@/components/ui/focus-cards';
+import { useLanguage } from '@/src/lib/LanguageContext';
 
 export default function ServicesPage() {
+  const { t } = useLanguage();
+
   useSEO({
-    title: 'Dịch vụ Content Automation - 5 bước tự động hoàn toàn',
-    description: 'Hệ thống 5 bước từ ADN nhân hiệu đến bài đăng hoàn chỉnh. 6 AI Agent song song, 7 phong cách hình ảnh, quản lý qua Notion.',
+    title: t('services.seoTitle'),
+    description: t('services.seoDesc'),
   });
 
   return (
     <>
       {/* Hero Lamp */}
       <Hero
-        title={<>Từ <span className="text-gradient">ADN nhân hiệu</span> đến bài đăng hoàn chỉnh</>}
-        subtitle="Hệ thống 5 bước biến nhân hiệu của bạn thành cỗ máy nội dung tự động — AI viết, bạn duyệt, hệ thống lo phần còn lại."
+        title={<>{t('services.heroTitle')}<span className="text-gradient">{t('services.heroTitleHighlight')}</span>{t('services.heroTitleEnd')}</>}
+        subtitle={t('services.heroSubtitle')}
         subtitleClassName="text-lg md:text-xl max-w-[600px]"
-        actions={[{ label: 'Xem bảng giá →', href: '/pricing' }]}
+        actions={[{ label: t('services.heroCta'), href: '/pricing' }]}
       />
 
       {/* 5 Phases — Detailed */}
@@ -187,19 +190,19 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* 7 Visual Styles — InteractiveSelector */}
+      {/* 7 Visual Styles — FocusCards */}
       <section className="py-24 relative z-10">
         <div className="max-w-6xl mx-auto px-4">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">7 phong cách hình ảnh</h2>
-            <p className="text-gray-400 max-w-xl mx-auto">Mỗi khách hàng có Visual Identity riêng — không ai giống ai.</p>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">7 phong cách hình ảnh</h2>
+            <p className="text-gray-400 max-w-xl mx-auto text-lg">Mỗi khách hàng có Visual Identity riêng — không ai giống ai.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <InteractiveSelector />
+            <FocusCards cards={visualStyleCards} />
           </motion.div>
         </div>
       </section>
@@ -314,5 +317,15 @@ const statusFlow = [
   { name: 'Gen Image', icon: <Image size={14} className="inline" />, color: 'border-purple-500/30 bg-purple-500/5 text-purple-400' },
   { name: 'Ready', icon: <Rocket size={14} className="inline" />, color: 'border-yellow-500/30 bg-yellow-500/5 text-yellow-400' },
   { name: 'Completed', icon: <CheckCircle2 size={14} className="inline" />, color: 'border-green-500/30 bg-green-500/5 text-green-400' },
+];
+
+const visualStyleCards = [
+  { title: "Carousels", src: "/images/styles/Carousels.webp" },
+  { title: "Normal", src: "/images/styles/Normal.webp" },
+  { title: "Infographic", src: "/images/styles/Inforgraphic.webp" },
+  { title: "Comparisons", src: "/images/styles/Comparisons.webp" },
+  { title: "Creative", src: "/images/styles/Creative.webp" },
+  { title: "Poster Film", src: "/images/styles/Poster Film.webp" },
+  { title: "Quote Card", src: "/images/styles/Quote Card.webp" },
 ];
 
